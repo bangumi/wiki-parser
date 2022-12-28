@@ -17,7 +17,7 @@ import type { Wiki } from '@bgm38/wiki';
 import parse, { WikiSyntaxError } from '@bgm38/wiki';
 
 try {
-  parse('...');
+  let w: Wiki = parse('...');
 } catch (error) {
   if (error instanceof WikiSyntaxError) {
     let l = '';
