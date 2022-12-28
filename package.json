@@ -1,0 +1,77 @@
+{
+  "name": "@bangumi/wiki",
+  "version": "0.0.1",
+  "description": "bangumi wiki syntax parser",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-jsdoc"
+    ],
+    "tsdoc": true,
+    "printWidth": 100,
+    "singleQuote": true,
+    "semi": true,
+    "trailingComma": "all"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "format": "prettier -w ./",
+    "version": "npm run build",
+    "prebuild": "rimraf -r dist",
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest",
+    "lint": "eslint --ext ts ./src",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json}": [
+      "prettier --ignore-path ./.prettierignore --write"
+    ]
+  },
+  "files": [
+    "./package.json",
+    "./dist",
+    "./dissrc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bangumi/wiki-parser.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "homepage": "https://github.com/bangumi/wiki-parser",
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.5",
+    "@vitest/coverage-c8": "^0.26.2",
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.6.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-rulesdir": "^0.2.2",
+    "eslint-plugin-tsdoc": "^0.2.17",
+    "eslint-plugin-unicorn": "^45.0.2",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "^8.0.2",
+    "js-yaml": "^4.1.0",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.0",
+    "prettier-plugin-jsdoc": "^0.4.2",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.9.3",
+    "vitest": "^0.26.2",
+    "vitest-github-actions-reporter": "^0.9.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "dependencies": {}
+}

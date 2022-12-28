@@ -1,0 +1,11 @@
+node_modules/*
+# all files in .vscode except .vscode/extensions.json
+.vscode/settings.json
+.vscode/launch.json
+.idea
+dist
+yarn-error.log
+lib/generated/
+coverage/
+config.yaml
+.eslintcache

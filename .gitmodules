@@ -1,0 +1,3 @@
+[submodule "__test__/wiki-syntax-spec"]
+	path = __test__/wiki-syntax-spec
+	url = https://github.com/bangumi/wiki-syntax-spec
