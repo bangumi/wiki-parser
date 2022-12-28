@@ -27,6 +27,9 @@
     "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
+  "engines": {
+    "node": ">=16"
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,yml,yaml}": [
       "prettier --ignore-path ./.prettierignore --write"
@@ -46,6 +49,8 @@
   "homepage": "https://github.com/bangumi/wiki-parser",
   "devDependencies": {
     "@types/js-yaml": "^4.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.47.1",
+    "@typescript-eslint/parser": "^5.47.1",
     "@vitest/coverage-c8": "^0.26.2",
     "eslint": "^8.30.0",
     "eslint-config-prettier": "^8.5.0",

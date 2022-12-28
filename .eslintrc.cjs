@@ -26,7 +26,6 @@ module.exports = {
     node: true,
   },
   rules: {
-    'rulesdir/no-relative-parent-import': 'error',
     'unused-imports/no-unused-imports': 'error',
     curly: ['error'],
     'tsdoc/syntax': 'error',
