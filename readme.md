@@ -10,8 +10,6 @@ npm i @bgm38/wiki
 
 ## 使用
 
-main.mjs
-
 没有 cjs 导出，请使用 esm 导入。
 
 ```typescript
