@@ -7,7 +7,7 @@ import {
   GlobalSuffixError,
   WikiSyntaxError,
 } from './error.js';
-import type { Wiki, WikiItemType } from './types';
+import type { Wiki, WikiItemType } from './types.js';
 import { WikiArrayItem, WikiItem } from './types.js';
 
 export * from './types.js';
