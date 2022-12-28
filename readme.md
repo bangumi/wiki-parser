@@ -13,12 +13,11 @@ npm i @bgm38/wiki
 没有 cjs 导出，请使用 esm 导入。
 
 ```typescript
-import parse from '@bgm38/wiki';
-import { WikiSyntaxError } from '@bgm38/wiki';
 import type { Wiki } from '@bgm38/wiki';
+import parse, { WikiSyntaxError } from '@bgm38/wiki';
 
 try {
-  wiki('...');
+  parse('...');
 } catch (error) {
   if (error instanceof WikiSyntaxError) {
     let l = '';
