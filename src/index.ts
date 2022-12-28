@@ -6,12 +6,12 @@ import {
   GlobalPrefixError,
   GlobalSuffixError,
   WikiSyntaxError,
-} from './error';
+} from './error.js';
 import type { Wiki, WikiItemType } from './types';
-import { WikiArrayItem, WikiItem } from './types';
+import { WikiArrayItem, WikiItem } from './types.js';
 
-export * from './types';
-export * from './error';
+export * from './types.js';
+export * from './error.js';
 
 /* should start with `{{Infobox` and end with `}}` */
 const prefix = '{{Infobox';
