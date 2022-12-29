@@ -40,10 +40,7 @@
     "./dist",
     "./src"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bangumi/wiki-parser.git"
-  },
+  "repository": "bangumi/wiki-parser",
   "author": "",
   "license": "MIT",
   "homepage": "https://github.com/bangumi/wiki-parser",
