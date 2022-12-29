@@ -1,6 +1,6 @@
 {
   "name": "@bgm38/wiki",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "bangumi wiki syntax parser",
   "type": "module",
   "main": "./dist/index.js",
