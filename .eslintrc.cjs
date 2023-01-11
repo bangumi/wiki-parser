@@ -32,6 +32,7 @@ module.exports = {
     'no-new-object': 'error',
     'no-console': 'error',
     'no-new-wrappers': 'error',
+    'unicorn/no-array-reduce': 'off',
     'unicorn/no-null': 'off',
     'unicorn/no-unsafe-regex': 'error',
     'unicorn/numeric-separators-style': 'off',

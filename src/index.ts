@@ -7,15 +7,13 @@ import {
   GlobalSuffixError,
   WikiSyntaxError,
 } from './error.js';
+import { prefix, suffix } from './shared.js';
 import type { Wiki, WikiItemType } from './types.js';
 import { WikiArrayItem, WikiItem } from './types.js';
 
 export * from './types.js';
 export * from './error.js';
-
-/* should start with `{{Infobox` and end with `}}` */
-const prefix = '{{Infobox';
-const suffix = '}}';
+export { stringify } from './stringify';
 
 export default function parse(s: string): Wiki {
   const wiki: Wiki = {
