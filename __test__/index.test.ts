@@ -1,11 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import * as url from 'node:url';
 
 import yaml from 'js-yaml';
 import { describe, test, expect } from 'vitest';
 
-import parse from '../src';
-import * as url from 'url';
+import parse, { stringify } from '../src';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -55,6 +55,34 @@ describe('Wiki syntax parser expected to be inValid', () => {
       const testContent = fs.readFileSync(testFilePath, 'utf8');
 
       expect(() => parse(testContent)).toThrowError();
+    });
+  }
+});
+
+describe('Wiki stringify', () => {
+  for (const file of validTestFiles) {
+    const [prefix, suffix] = file.split('.');
+    if (suffix !== 'wiki') {
+      continue;
+    }
+
+    if (!prefix) {
+      throw new Error('BUG: undefined file path prefix');
+    }
+
+    test(`${prefix} should stringify correct`, () => {
+      const testFilePath = path.resolve(validTestDir, file);
+      const expectedFilePath = path.resolve(validTestDir, `${prefix}.yaml`);
+
+      const testContent = fs.readFileSync(testFilePath, 'utf8');
+      const expectedContent = fs.readFileSync(expectedFilePath, 'utf8');
+      const wiki = parse(testContent);
+      const res = stringify(wiki);
+
+      const result = parse(res);
+      const expected = yaml.load(expectedContent);
+
+      expect(result).toEqual(expected);
     });
   }
 });
