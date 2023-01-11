@@ -7,7 +7,6 @@ export default defineConfig({
   },
   test: {
     reporters: process.env.GITHUB_ACTIONS ? ['default', new GithubActionsReporter()] : 'default',
-    watch: false,
     environment: 'node',
     threads: false,
     snapshotFormat: {
