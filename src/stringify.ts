@@ -12,7 +12,7 @@ const stringifyArray = (arr: WikiArrayItem[] | undefined) => {
 export const stringify = (wiki: Wiki) => {
   const body = wiki.data.reduce((pre, item) => {
     if (item.array === true) {
-      return `${pre}\n|${item.key}={${stringifyArray(item.values)}\n}`;
+      return `${pre}\n|${item.key} = {${stringifyArray(item.values)}\n}`;
     }
     return `${pre}\n|${item.key}=${item.value ?? ''}`;
   }, '');
