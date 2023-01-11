@@ -14,7 +14,7 @@ export const stringify = (wiki: Wiki) => {
     if (item.array === true) {
       return `${pre}\n|${item.key} = {${stringifyArray(item.values)}\n}`;
     }
-    return `${pre}\n|${item.key}=${item.value ?? ''}`;
+    return `${pre}\n|${item.key} = ${item.value ?? ''}`;
   }, '');
   return `${prefix} ${wiki.type}${body}\n${suffix}`;
 };
