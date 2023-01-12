@@ -8,6 +8,7 @@ export type WikiItemType = 'array' | 'object';
 export class WikiArrayItem {
   k?: string;
   v?: string;
+  readonly _key = Symbol();
 
   constructor(k?: string, v?: string) {
     // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
@@ -17,12 +18,13 @@ export class WikiArrayItem {
 }
 
 export class WikiItem {
-  key: string;
+  key?: string;
   value?: string;
   array?: boolean;
   values?: WikiArrayItem[];
+  readonly _key = Symbol();
 
-  constructor(key: string, value: string, type: WikiItemType) {
+  constructor(key?: string, value?: string, type: WikiItemType = 'object') {
     this.key = key;
     switch (type) {
       case 'array': {
