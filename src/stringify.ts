@@ -11,7 +11,7 @@ const stringifyArray = (arr: WikiArrayItem[] | undefined) => {
 
 export function stringify(wiki: Wiki): string {
   const body = wiki.data.reduce((pre, item) => {
-    if (item.key === undefined) {
+    if (item.key.trim().length === 0) {
       return pre;
     }
     if (item.array === true) {

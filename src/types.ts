@@ -19,13 +19,13 @@ export class WikiArrayItem {
 }
 
 export class WikiItem {
-  key?: string;
+  key: string;
   value?: string;
   array?: boolean;
   values?: WikiArrayItem[];
   _key? = nanoid();
 
-  constructor(key?: string, value?: string, type: WikiItemType = 'object') {
+  constructor(key: string, value: string, type: WikiItemType) {
     this.key = key;
     switch (type) {
       case 'array': {

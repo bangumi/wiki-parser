@@ -101,7 +101,7 @@ describe('Wiki stringify', () => {
   test('empty WikiItem should be ignored', () => {
     const wiki: Wiki = {
       type: 'type',
-      data: [new WikiItem()],
+      data: [new WikiItem('', '', 'object'), new WikiItem('  ', '', 'object')],
     };
     const res = stringify(wiki);
     expect(res).toEqual(`{{Infobox type\n}}`);
