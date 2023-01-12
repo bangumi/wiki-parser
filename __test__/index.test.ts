@@ -5,7 +5,8 @@ import * as url from 'node:url';
 import yaml from 'js-yaml';
 import { describe, test, expect } from 'vitest';
 
-import { parse, stringify } from '../src';
+import type { Wiki } from '../src';
+import { parse, stringify, WikiItem } from '../src';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -16,6 +17,18 @@ const invalidTestDir = path.resolve(testsDir, 'invalid');
 
 const validTestFiles = fs.readdirSync(validTestDir);
 const inValidTestFiles = fs.readdirSync(invalidTestDir);
+
+const omitUnitKey = (wiki: Wiki) => {
+  for (const item of wiki.data) {
+    delete item._key;
+    if (item.array) {
+      for (const i of item.values ?? []) {
+        delete i._key;
+      }
+    }
+  }
+  return wiki;
+};
 
 describe('Wiki syntax parser expected to be valid', () => {
   for (const file of validTestFiles) {
@@ -38,7 +51,7 @@ describe('Wiki syntax parser expected to be valid', () => {
       const result = parse(testContent);
       const expected = yaml.load(expectedContent);
 
-      expect(result).toEqual(expected);
+      expect(omitUnitKey(result)).toEqual(expected);
     });
   }
 });
@@ -54,7 +67,7 @@ describe('Wiki syntax parser expected to be inValid', () => {
       const testFilePath = path.resolve(invalidTestDir, file);
       const testContent = fs.readFileSync(testFilePath, 'utf8');
 
-      expect(() => parse(testContent)).toThrowError();
+      expect(() => omitUnitKey(parse(testContent))).toThrowError();
     });
   }
 });
@@ -82,7 +95,15 @@ describe('Wiki stringify', () => {
       const result = parse(res);
       const expected = yaml.load(expectedContent);
 
-      expect(result).toEqual(expected);
+      expect(omitUnitKey(result)).toEqual(expected);
     });
   }
+  test('empty WikiItem should be ignored', () => {
+    const wiki: Wiki = {
+      type: 'type',
+      data: [new WikiItem()],
+    };
+    const res = stringify(wiki);
+    expect(res).toEqual(`{{Infobox type\n}}`);
+  });
 });
