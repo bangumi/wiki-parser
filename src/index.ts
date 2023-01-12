@@ -15,9 +15,7 @@ export * from './types';
 export * from './error';
 export { stringify } from './stringify';
 
-export { parse };
-
-export default function parse(s: string): Wiki {
+export function parse(s: string): Wiki {
   const wiki: Wiki = {
     type: '',
     data: [],
