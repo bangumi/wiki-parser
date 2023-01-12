@@ -5,7 +5,7 @@ import * as url from 'node:url';
 import yaml from 'js-yaml';
 import { describe, test, expect } from 'vitest';
 
-import parse, { stringify } from '../src';
+import { parse, stringify } from '../src';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 

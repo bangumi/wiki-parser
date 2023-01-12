@@ -6,16 +6,16 @@ import {
   GlobalPrefixError,
   GlobalSuffixError,
   WikiSyntaxError,
-} from './error.js';
-import { prefix, suffix } from './shared.js';
-import type { Wiki, WikiItemType } from './types.js';
-import { WikiArrayItem, WikiItem } from './types.js';
+} from './error';
+import { prefix, suffix } from './shared';
+import type { Wiki, WikiItemType } from './types';
+import { WikiArrayItem, WikiItem } from './types';
 
-export * from './types.js';
-export * from './error.js';
+export * from './types';
+export * from './error';
 export { stringify } from './stringify';
 
-export default function parse(s: string): Wiki {
+export function parse(s: string): Wiki {
   const wiki: Wiki = {
     type: '',
     data: [],

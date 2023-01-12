@@ -14,7 +14,7 @@ npm i @bgm38/wiki
 
 ```typescript
 import type { Wiki } from '@bgm38/wiki';
-import parse, { WikiSyntaxError } from '@bgm38/wiki';
+import { parse, WikiSyntaxError } from '@bgm38/wiki';
 
 try {
   let w: Wiki = parse('...');
