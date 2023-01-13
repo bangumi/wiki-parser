@@ -3,6 +3,12 @@ export interface Wiki {
   data: WikiItem[];
 }
 
+/** Js 的 map 会按照插入顺序排序 */
+export interface WikiMap {
+  type: string;
+  data: Map<string, WikiItem>;
+}
+
 export type WikiItemType = 'array' | 'object';
 
 export class WikiArrayItem {
@@ -34,6 +40,28 @@ export class WikiItem {
         this.value = value;
         break;
       }
+    }
+  }
+
+  convertToArray() {
+    if (this.array) {
+      return;
+    }
+
+    this.array = true;
+    this.values ??= [];
+
+    this.values.push(new WikiArrayItem(undefined, this.value));
+    this.value = undefined;
+  }
+
+  push(item: WikiItem) {
+    this.convertToArray();
+
+    if (item.array) {
+      this.values?.push(...(item.values ?? []));
+    } else {
+      this.values?.push(new WikiArrayItem(undefined, item.value));
     }
   }
 }
