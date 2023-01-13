@@ -2,10 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import * as url from 'node:url';
 
-import yaml from 'js-yaml';
 import { describe, test, expect } from '@jest/globals';
+import yaml from 'js-yaml';
 
 import { parse, parseToMap, stringify, WikiArrayItem, WikiItem } from '../src';
+import { stringifyMap } from '../src/stringify';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -114,5 +115,23 @@ describe('parse map', () => {
 `);
 
     expect(o).toEqual(expected);
+  });
+
+  test('should merge next array keys', () => {
+    const parsed = parseToMap(`{{Infobox
+|A= {
+[1|b]
+}
+|c=e
+| A=c
+| A={
+[2|b]
+}
+|q=
+}}
+`);
+
+    expect(parsed).toMatchSnapshot();
+    expect(stringifyMap(parsed)).toMatchSnapshot();
   });
 });

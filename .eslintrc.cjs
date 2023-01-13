@@ -106,7 +106,10 @@ module.exports = {
     ],
     'import/first': 'error',
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '_' }],
+    '@typescript-eslint/no-unused-vars': ['error', {
+      varsIgnorePattern: '^_',
+      destructuredArrayIgnorePattern: '^_',
+    }],
     '@typescript-eslint/strict-boolean-expressions': 'off',
     'import/order': [
       'error',
@@ -125,7 +128,7 @@ module.exports = {
       // ban just non-const enums
       {
         selector: 'TSEnumDeclaration:not([const=true])',
-        message: "use 'const enum'",
+        message: 'use \'const enum\'',
       },
     ],
   },
