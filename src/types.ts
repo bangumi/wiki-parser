@@ -43,7 +43,7 @@ export class WikiItem {
     }
   }
 
-  convertToArray() {
+  private convertToArray() {
     if (this.array) {
       return;
     }
