@@ -21,7 +21,7 @@ export function parseToMap(s: string): WikiMap {
 
   const data = new Map<string, WikiItem>();
 
-  for (let item of w.data) {
+  for (const item of w.data) {
     const previous = data.get(item.key);
     if (!previous) {
       data.set(item.key, item);
