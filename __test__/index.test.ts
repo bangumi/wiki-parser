@@ -3,7 +3,7 @@ import path from 'node:path';
 import * as url from 'node:url';
 
 import yaml from 'js-yaml';
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect } from '@jest/globals';
 
 import { parse, stringify } from '../src';
 
