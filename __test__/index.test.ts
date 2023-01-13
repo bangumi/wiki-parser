@@ -5,7 +5,7 @@ import * as url from 'node:url';
 import yaml from 'js-yaml';
 import { describe, test, expect } from '@jest/globals';
 
-import { parse, stringify } from '../src';
+import { parse, parseToMap, stringify, WikiArrayItem, WikiItem } from '../src';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -85,4 +85,34 @@ describe('Wiki stringify', () => {
       expect(result).toEqual(expected);
     });
   }
+});
+
+describe('parse map', () => {
+  const item = new WikiItem('A', '', 'array');
+
+  item.values = [new WikiArrayItem(undefined, 'b'), new WikiArrayItem(undefined, 'c')];
+
+  const expected = { type: '', data: new Map([['A', item]]) };
+
+  test('should merge keys', () => {
+    const o = parseToMap(`{{Infobox
+|A= b
+| A=c
+}}
+`);
+
+    expect(o).toEqual(expected);
+  });
+
+  test('should merge previous array keys', () => {
+    const o = parseToMap(`{{Infobox
+|A= {
+[b]
+}
+| A=c
+}}
+`);
+
+    expect(o).toEqual(expected);
+  });
 });

@@ -33,6 +33,9 @@
   "lint-staged": {
     "*.{md,js,jsx,ts,tsx,json,yml,yaml}": [
       "prettier --ignore-path ./.prettierignore --write"
+    ],
+    "*.{js,ts}": [
+      "eslint --fix"
     ]
   },
   "files": [

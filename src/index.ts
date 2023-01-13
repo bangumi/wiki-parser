@@ -8,12 +8,31 @@ import {
   WikiSyntaxError,
 } from './error';
 import { prefix, suffix } from './shared';
-import type { Wiki, WikiItemType } from './types';
+import type { Wiki, WikiItemType, WikiMap } from './types';
 import { WikiArrayItem, WikiItem } from './types';
 
 export * from './types';
 export * from './error';
 export { stringify } from './stringify';
+
+/** 解析 wiki 文本，以 `Map` 类型返回解析结果。 会合并重复出现的 key */
+export function parseToMap(s: string): WikiMap {
+  const w = parse(s);
+
+  const data = new Map<string, WikiItem>();
+
+  for (const item of w.data) {
+    const previous = data.get(item.key);
+    if (!previous) {
+      data.set(item.key, item);
+      continue;
+    }
+
+    previous.push(item);
+  }
+
+  return { type: w.type, data };
+}
 
 export function parse(s: string): Wiki {
   const wiki: Wiki = {
