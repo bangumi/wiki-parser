@@ -3,7 +3,7 @@ export interface Wiki {
   data: WikiItem[];
 }
 
-/** Js 的 map 会按照插入顺序排序 */
+/** JS 的 map 会按照插入顺序排序 */
 export interface WikiMap {
   type: string;
   data: Map<string, WikiItem>;
