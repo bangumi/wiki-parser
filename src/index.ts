@@ -34,13 +34,36 @@ export function parseToMap(s: string): WikiMap {
   return { type: w.type, data };
 }
 
+function processInput(s: string): [string, number] {
+  let offset = 2;
+  s = s.replace(/\r\n/g, '\n');
+
+  for (const char of s) {
+    switch (char) {
+      case '\n': {
+        offset++;
+        break;
+      }
+      case ' ':
+      case '\t': {
+        continue;
+      }
+      default: {
+        return [s.trim(), offset];
+      }
+    }
+  }
+
+  return [s.trim(), offset];
+}
+
 export function parse(s: string): Wiki {
   const wiki: Wiki = {
     type: '',
     data: [],
   };
 
-  const strTrim = s.trim().replace(/\r\n/g, '\n');
+  const [strTrim, offset] = processInput(s);
 
   if (strTrim === '') {
     return wiki;
@@ -64,7 +87,7 @@ export function parse(s: string): Wiki {
   let inArray = false;
   for (let i = 0; i < fields.length; ++i) {
     const line = fields[i]?.trim();
-    const lino = i + 2;
+    const lino = offset + i;
 
     if (!line) {
       continue;
