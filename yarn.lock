@@ -415,7 +415,7 @@ __metadata:
   resolution: "@bgm38/wiki@workspace:."
   dependencies:
     "@jest/globals": ^29.5.0
-    "@rollup/plugin-typescript": ^11.0.0
+    "@rollup/plugin-typescript": ^11.1.0
     "@types/js-yaml": ^4.0.5
     "@typescript-eslint/eslint-plugin": ^5.59.0
     "@typescript-eslint/parser": ^5.59.0
@@ -434,7 +434,7 @@ __metadata:
     prettier: ^2.8.7
     prettier-plugin-jsdoc: ^0.4.2
     rimraf: ^5.0.0
-    rollup: ^3.20.2
+    rollup: ^3.20.7
     ts-jest: ^29.1.0
     typescript: ^5.0.4
   languageName: unknown
@@ -900,7 +900,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-typescript@npm:^11.0.0":
+"@rollup/plugin-typescript@npm:^11.1.0":
   version: 11.1.0
   resolution: "@rollup/plugin-typescript@npm:11.1.0"
   dependencies:
@@ -5567,7 +5567,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^3.20.2":
+"rollup@npm:^3.20.7":
   version: 3.20.7
   resolution: "rollup@npm:3.20.7"
   dependencies:
