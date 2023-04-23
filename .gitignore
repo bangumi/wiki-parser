@@ -9,3 +9,6 @@ lib/generated/
 coverage/
 config.yaml
 .eslintcache
+
+.yarn/*
+!.yarn/releases
