@@ -430,7 +430,7 @@ __metadata:
     husky: ^8.0.3
     jest: ^29.5.0
     js-yaml: ^4.1.0
-    lint-staged: ^13.2.0
+    lint-staged: ^13.2.1
     prettier: ^2.8.7
     prettier-plugin-jsdoc: ^0.4.2
     rimraf: ^4.4.1
@@ -4210,7 +4210,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:^13.2.0":
+"lint-staged@npm:^13.2.1":
   version: 13.2.1
   resolution: "lint-staged@npm:13.2.1"
   dependencies:
