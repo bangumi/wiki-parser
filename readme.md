@@ -39,11 +39,27 @@ try {
 }
 ```
 
-## 测试
+## 开发
+
+下载代码
 
 ```shell
 git clone --recursive https://github.com/bangumi/wiki-parser bangumi/wiki-parser
 cd bangumi/wiki-parser
+```
+
+### 本地安装
+
+安装依赖
+
+```shell
+corepack enable
+corepack prepare --activate
 yarn
+```
+
+### 测试
+
+```shell
 yarn test
 ```
