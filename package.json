@@ -19,10 +19,10 @@
   "sideEffects": false,
   "scripts": {
     "format": "prettier -w ./",
-    "version": "npm run build",
     "prebuild": "rimraf dist",
     "build": "rollup --config rollup.config.ts --configPlugin typescript",
     "test": "NODE_OPTIONS=\"--no-warnings --experimental-vm-modules\" jest",
+    "prepack": "yarn run build",
     "lint": "eslint --ext ts ./src",
     "prepare": "husky install",
     "lint-staged": "lint-staged"
