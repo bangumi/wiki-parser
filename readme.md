@@ -20,19 +20,7 @@ try {
   let w: Wiki = parse('...');
 } catch (error) {
   if (error instanceof WikiSyntaxError) {
-    let l = '';
-    if (error.line) {
-      l = `line: ${error.line}`;
-      if (error.lino) {
-        l += `:${error.lino}`;
-      }
-    }
-
-    if (l) {
-      l = ' (' + l + ')';
-    }
-
-    console.log('bad wiki string', `${error.message}${l}`);
+    console.log('bad wiki string', `${error.message}`);
   }
 
   throw error;
