@@ -6,12 +6,20 @@ export const ExpectingNewFieldError = "missing '|' to start a new field";
 export const ExpectingSignEqualError = "missing '=' to separate field name and value";
 
 export class WikiSyntaxError extends Error {
+  lino: number;
   line: string | null;
-  lino: number | null;
 
-  constructor(lino: number | null, line: string | null, message: string) {
-    super(message);
+  constructor(lino: number, line: string | null, message: string) {
+    super(toErrorString(lino, line, message));
     this.line = line;
     this.lino = lino;
   }
+}
+
+function toErrorString(lino: number, line: string | null, msg: string): string {
+  if (line === null) {
+    return `WikiSyntaxError: ${msg}, line ${lino}`;
+  }
+
+  return `WikiSyntaxError: ${msg}, line ${lino}: ${JSON.stringify(line)}`;
 }

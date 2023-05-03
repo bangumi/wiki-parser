@@ -70,10 +70,11 @@ export function parse(s: string): Wiki {
   }
 
   if (!strTrim.startsWith(prefix)) {
-    throw new WikiSyntaxError(null, null, GlobalPrefixError);
+    throw new WikiSyntaxError(offset - 1, null, GlobalPrefixError);
   }
+
   if (!strTrim.endsWith(suffix)) {
-    throw new WikiSyntaxError(null, null, GlobalSuffixError);
+    throw new WikiSyntaxError((s.match(/\n/g)?.length ?? -2) + 1, null, GlobalSuffixError);
   }
 
   const arr = strTrim.split('\n');
