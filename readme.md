@@ -1,5 +1,7 @@
 # 解析 bangumi 的 wiki 语法
 
+[![](https://img.shields.io/npm/v/@bgm38/wiki)](https://npmjs.com/package/@bgm38/wiki)
+
 https://github.com/bangumi/wiki-syntax-spec
 
 ## 安装
