@@ -1,1 +1,3 @@
 __test__/wiki-syntax-spec/
+.yarn/
+dist/

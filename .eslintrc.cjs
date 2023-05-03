@@ -13,7 +13,7 @@ module.exports = {
     'prettier',
   ],
   plugins: ['@typescript-eslint', 'import', 'unicorn', 'tsdoc', 'unused-imports'],
-  ignorePatterns: ['**/dist/*', 'lib/generated/**/*', 'coverage/**/*'],
+  ignorePatterns: ['**/dist/*', 'lib/generated/**/*', 'coverage/**/*', '.yarn/**/*'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     sourceType: 'module',

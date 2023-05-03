@@ -10,4 +10,5 @@ coverage/
 config.yaml
 .eslintcache
 
-.yarn/
+.yarn/*
+!.yarn/releases

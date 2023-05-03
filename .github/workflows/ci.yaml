@@ -21,8 +21,6 @@ jobs:
           node-version: '18'
           cache: yarn
 
-      - run: corepack enable
-      - run: corepack prepare
       - run: yarn
 
       - run: npx prettier --check ./
@@ -44,8 +42,6 @@ jobs:
           node-version: '18'
           cache: yarn
 
-      - run: corepack enable
-      - run: corepack prepare
       - run: yarn
 
       - run: yarn test --coverage

@@ -32,7 +32,7 @@
     "node": ">=16"
   },
   "lint-staged": {
-    "*.{md,js,jsx,ts,tsx,json,yml,yaml}": [
+    "*.{md,cjs,mjs,js,jsx,ts,tsx,json,yml,yaml}": [
       "prettier --ignore-path ./.prettierignore --write"
     ],
     "*.{js,ts}": [

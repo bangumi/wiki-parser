@@ -38,13 +38,9 @@ git clone --recursive https://github.com/bangumi/wiki-parser bangumi/wiki-parser
 cd bangumi/wiki-parser
 ```
 
-### 本地安装
-
-安装依赖
+### 安装依赖
 
 ```shell
-corepack enable
-corepack prepare --activate
 yarn
 ```
 
