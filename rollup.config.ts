@@ -1,5 +1,5 @@
-import type { RollupOptions } from 'rollup';
 import typescript from '@rollup/plugin-typescript';
+import type { RollupOptions } from 'rollup';
 
 export default {
   input: 'src/index.ts',
@@ -8,5 +8,13 @@ export default {
     format: 'esm',
     sourcemap: true,
   },
-  plugins: [typescript({ tsconfig: 'tsconfig.build.json' })],
+  plugins: [
+    typescript({
+      tsconfig: 'tsconfig.json',
+      compilerOptions: {
+        rootDir: 'src',
+      },
+      exclude: ['**/node_modules/**', '**/__test__/**', 'dist'],
+    }),
+  ],
 } satisfies RollupOptions;
