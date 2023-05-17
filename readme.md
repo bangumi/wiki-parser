@@ -41,11 +41,11 @@ cd bangumi/wiki-parser
 ### 安装依赖
 
 ```shell
-yarn
+pnpm i
 ```
 
 ### 测试
 
 ```shell
-yarn test
+pnpm test
 ```

@@ -22,12 +22,12 @@
     "prebuild": "rimraf dist",
     "build": "rollup --config rollup.config.ts --configPlugin typescript",
     "test": "NODE_OPTIONS=\"--no-warnings --experimental-vm-modules\" jest",
-    "prepack": "yarn run build",
+    "prepack": "pnpm run build",
     "lint": "eslint --ext ts ./src",
     "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
-  "packageManager": "yarn@3.5.1",
+  "packageManager": "pnpm@8.5.1",
   "engines": {
     "node": ">=16"
   },
