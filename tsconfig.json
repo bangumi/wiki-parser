@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
+    "experimentalDecorators": false,
     "module": "ESNext",
     "target": "ES2022",
-    "moduleResolution": "Node",
+    "moduleResolution": "Node16",
     "outDir": "dist",
     "allowSyntheticDefaultImports": true,
     "useUnknownInCatchVariables": true,
@@ -15,11 +15,10 @@
     "skipLibCheck": true,
     "strictNullChecks": true,
     "isolatedModules": true,
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
     "rootDir": ".",
     "allowJs": false,
-    "resolveJsonModule": false
+    "resolveJsonModule": false,
+    "pretty": true,
+    "noEmit": true
   }
 }

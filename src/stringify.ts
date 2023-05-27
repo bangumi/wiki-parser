@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/no-array-reduce */
-import { prefix, suffix } from './shared';
-import type { Wiki, WikiArrayItem, WikiMap } from './types';
+import { prefix, suffix } from './shared.js';
+import type { Wiki, WikiArrayItem, WikiMap } from './types.js';
 
 const stringifyArray = (arr: WikiArrayItem[] | undefined) => {
   if (!arr) {

@@ -2,11 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import * as url from 'node:url';
 
-import { describe, test, expect } from '@jest/globals';
 import yaml from 'js-yaml';
+import { describe, test, expect } from 'vitest';
 
-import { parse, parseToMap, stringify, WikiArrayItem, WikiItem } from '../src';
-import { stringifyMap } from '../src/stringify';
+import { parse, parseToMap, stringify, WikiArrayItem, WikiItem } from '../src/index.js';
+import { stringifyMap } from '../src/stringify.js';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -136,7 +136,7 @@ describe('parse map', () => {
   });
 });
 
-test.only('should throw syntax error', () => {
+test('should throw syntax error', () => {
   expect(() => parse(`{{`)).toThrowErrorMatchingInlineSnapshot(
     `"WikiSyntaxError: missing prefix '{{Infobox' at the start, line 1"`,
   );

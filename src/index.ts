@@ -6,14 +6,14 @@ import {
   GlobalPrefixError,
   GlobalSuffixError,
   WikiSyntaxError,
-} from './error';
-import { prefix, suffix } from './shared';
-import type { Wiki, WikiItemType, WikiMap } from './types';
-import { WikiArrayItem, WikiItem } from './types';
+} from './error.js';
+import { prefix, suffix } from './shared.js';
+import type { Wiki, WikiItemType, WikiMap } from './types.js';
+import { WikiArrayItem, WikiItem } from './types.js';
 
-export * from './types';
-export * from './error';
-export { stringify } from './stringify';
+export * from './types.js';
+export * from './error.js';
+export { stringify } from './stringify.js';
 
 /** 解析 wiki 文本，以 `Map` 类型返回解析结果。 会合并重复出现的 key */
 export function parseToMap(s: string): WikiMap {
