@@ -36,7 +36,7 @@ export function parseToMap(s: string): WikiMap {
 
 function processInput(s: string): [string, number] {
   let offset = 2;
-  s = s.replace(/\r\n/g, '\n');
+  s = s.replaceAll('\r\n', '\n');
 
   for (const char of s) {
     switch (char) {
@@ -111,9 +111,7 @@ export function parse(s: string): Wiki {
       if (i === fields.length - 1) {
         throw new WikiSyntaxError(lino, line, ArrayNoCloseError);
       }
-      wiki.data[wiki.data.length - 1]?.values?.push(
-        new WikiArrayItem(...parseArrayItem(lino, line)),
-      );
+      wiki.data.at(-1)?.values?.push(new WikiArrayItem(...parseArrayItem(lino, line)));
     } else {
       throw new WikiSyntaxError(lino, line, ExpectingNewFieldError);
     }
