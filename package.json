@@ -30,7 +30,7 @@
     "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
-  "packageManager": "pnpm@8.6.9",
+  "packageManager": "pnpm@8.6.11",
   "engines": {
     "node": ">=16"
   },
