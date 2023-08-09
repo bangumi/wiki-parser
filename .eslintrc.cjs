@@ -57,7 +57,7 @@ module.exports = {
     indent: 'off',
     'array-element-newline': ['error', 'consistent'],
     'array-bracket-newline': ['error', 'consistent'],
-    '@typescript-eslint/restrict-plus-operands': ['error', { checkCompoundAssignments: true }],
+    '@typescript-eslint/restrict-plus-operands': ['error', { skipCompoundAssignments: false }],
     '@typescript-eslint/no-floating-promises': ['error', { ignoreVoid: true }],
     '@typescript-eslint/object-curly-spacing': ['error', 'always'],
     '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
