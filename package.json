@@ -53,7 +53,7 @@
   "homepage": "https://github.com/bangumi/wiki-parser",
   "devDependencies": {
     "@types/js-yaml": "^4.0.8",
-    "@types/node": "^18.18.1",
+    "@types/node": "^20.8.10",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
     "@vitest/coverage-v8": "^0.34.6",
