@@ -19,6 +19,6 @@
     "allowJs": false,
     "resolveJsonModule": false,
     "pretty": true,
-    "noEmit": true
-  }
+    "noEmit": true,
+  },
 }
