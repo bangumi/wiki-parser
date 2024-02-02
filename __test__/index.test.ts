@@ -138,15 +138,15 @@ describe('parse map', () => {
 
 test('should throw syntax error', () => {
   expect(() => parse(`{{`)).toThrowErrorMatchingInlineSnapshot(
-    `"WikiSyntaxError: missing prefix '{{Infobox' at the start, line 1"`,
+    `[Error: WikiSyntaxError: missing prefix '{{Infobox' at the start, line 1]`,
   );
   expect(() => parse(`\n{{`)).toThrowErrorMatchingInlineSnapshot(
-    `"WikiSyntaxError: missing prefix '{{Infobox' at the start, line 2"`,
+    `[Error: WikiSyntaxError: missing prefix '{{Infobox' at the start, line 2]`,
   );
   expect(() => parse('{{Infobox  \n\n\n')).toThrowErrorMatchingInlineSnapshot(
-    `"WikiSyntaxError: missing suffix '}}' at the end, line 4"`,
+    `[Error: WikiSyntaxError: missing suffix '}}' at the end, line 4]`,
   );
   expect(() => parse(`{{Infobox  \n 1 \n\n\n\n`)).toThrowErrorMatchingInlineSnapshot(
-    `"WikiSyntaxError: missing suffix '}}' at the end, line 6"`,
+    `[Error: WikiSyntaxError: missing suffix '}}' at the end, line 6]`,
   );
 });
