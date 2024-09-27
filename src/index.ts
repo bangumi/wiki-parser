@@ -86,6 +86,9 @@ export function parse(s: string): Wiki {
   const fields = arr.slice(1, -1);
 
   let inArray = false;
+  let inNested = false;
+  let currentKey = '';
+  const currentNested = new Map();
   for (let i = 0; i < fields.length; ++i) {
     const line = fields[i]?.trim();
     const lino = offset + i;
@@ -93,14 +96,39 @@ export function parse(s: string): Wiki {
     if (!line) {
       continue;
     }
+
+    if (inNested) {
+      if (line.startsWith('|')) {
+        const [key, value, meta] = parseNewField(lino, line);
+        if (meta !== 'object') {
+          throw new WikiSyntaxError(lino, line, 'nested infobox only allow one layer');
+        }
+        currentNested.set(key, value);
+        continue;
+      }
+
+      if (line.startsWith('}')) {
+        inNested = false;
+        wiki.data.push(new WikiItem(currentKey, currentNested, 'nested'));
+        continue;
+      }
+
+      throw new WikiSyntaxError(lino, line, 'nested infobox only allow one layer');
+    }
+
     /* new field */
     if (line.startsWith('|')) {
       if (inArray) {
         throw new WikiSyntaxError(lino, line, ArrayNoCloseError);
       }
-      const meta = parseNewField(lino, line);
-      inArray = meta[2] === 'array';
-      const field = new WikiItem(...meta);
+      const [key, value, meta] = parseNewField(lino, line);
+      if (meta === 'nested') {
+        inNested = true;
+        currentKey = key;
+        continue;
+      }
+      inArray = meta === 'array';
+      const field = new WikiItem(key, value, meta);
       wiki.data.push(field);
       /* is Array item */
     } else if (inArray) {
@@ -138,6 +166,9 @@ const parseNewField = (lino: number, line: string): [string, string, WikiItemTyp
   const value = str.slice(index + 1).trim();
   switch (value) {
     case '{': {
+      if (key.includes('@')) {
+        return [key, '', 'nested'];
+      }
       return [key, '', 'array'];
     }
     default: {

@@ -127,12 +127,122 @@ describe('parse map', () => {
 | A={
 [2|b]
 }
+|B@1= {
+  |c = e
+  |A = c
+}
 |q=
 }}
 `);
 
-    expect(parsed).toMatchSnapshot();
-    expect(stringifyMap(parsed)).toMatchSnapshot();
+    expect(parsed).toMatchInlineSnapshot(`
+      {
+        "data": Map {
+          "A" => WikiItem {
+            "array": true,
+            "key": "A",
+            "map": undefined,
+            "value": undefined,
+            "values": [
+              WikiArrayItem {
+                "k": "1",
+                "v": "b",
+              },
+              WikiArrayItem {
+                "k": undefined,
+                "v": "c",
+              },
+              WikiArrayItem {
+                "k": "2",
+                "v": "b",
+              },
+            ],
+          },
+          "c" => WikiItem {
+            "array": undefined,
+            "key": "c",
+            "map": undefined,
+            "value": "e",
+            "values": undefined,
+          },
+          "B@1" => WikiItem {
+            "array": undefined,
+            "key": "B@1",
+            "map": Map {
+              "c" => "e",
+              "A" => "c",
+            },
+            "value": undefined,
+            "values": undefined,
+          },
+          "q" => WikiItem {
+            "array": undefined,
+            "key": "q",
+            "map": undefined,
+            "value": "",
+            "values": undefined,
+          },
+        },
+        "type": "",
+      }
+    `);
+    expect(stringifyMap(parsed)).toMatchInlineSnapshot(`
+      "{{Infobox
+      |A = {
+      [1|b]
+      [c]
+      [2|b]
+      }
+      |c = e
+      |B@1 = 
+      |q = 
+      }}"
+    `);
+  });
+
+  test('should support new nested infobox', () => {
+    const parsed = parse(`{{Infobox
+|A@1= {
+  |c = e
+  |A = c
+}
+|q = s
+}}
+`);
+
+    expect(parsed).toMatchInlineSnapshot(`
+      {
+        "data": [
+          WikiItem {
+            "array": undefined,
+            "key": "A@1",
+            "map": Map {
+              "c" => "e",
+              "A" => "c",
+            },
+            "value": undefined,
+            "values": undefined,
+          },
+          WikiItem {
+            "array": undefined,
+            "key": "q",
+            "map": undefined,
+            "value": "s",
+            "values": undefined,
+          },
+        ],
+        "type": "",
+      }
+    `);
+    expect(stringify(parsed)).toMatchInlineSnapshot(`
+      "{{Infobox
+      |A@1 = {
+        | e = c
+        | c = A
+      }
+      |q = s
+      }}"
+    `);
   });
 });
 

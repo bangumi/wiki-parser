@@ -50,3 +50,28 @@ exports[`parse map > should merge next array keys 2`] = `
 |q = 
 }}"
 `;
+
+exports[`parse map > should support new nested infobox 1`] = `
+{
+  "data": Map {
+    "A@1" => WikiItem {
+      "array": undefined,
+      "key": "A@1",
+      "map": Map {
+        "c" => "e",
+        "A" => "c",
+      },
+      "value": undefined,
+      "values": undefined,
+    },
+    "q" => WikiItem {
+      "array": undefined,
+      "key": "q",
+      "map": undefined,
+      "value": "s",
+      "values": undefined,
+    },
+  },
+  "type": "",
+}
+`;

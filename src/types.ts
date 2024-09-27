@@ -1,15 +1,16 @@
+
 export interface Wiki {
   type: string;
   data: WikiItem[];
 }
 
-/** JS 的 map 会按照插入顺序排序 */
 export interface WikiMap {
   type: string;
+  /** JS 的 map 会按照插入顺序排序 */
   data: Map<string, WikiItem>;
 }
 
-export type WikiItemType = 'array' | 'object';
+export type WikiItemType = 'array' | 'object' | 'nested';
 
 export class WikiArrayItem {
   k?: string;
@@ -26,9 +27,10 @@ export class WikiItem {
   key: string;
   value?: string;
   array?: boolean;
+  map?: Map<string, string>;
   values?: WikiArrayItem[];
 
-  constructor(key: string, value: string, type: WikiItemType) {
+  constructor(key: string, value: string | Map<string, string>, type: WikiItemType) {
     this.key = key;
     switch (type) {
       case 'array': {
@@ -36,7 +38,19 @@ export class WikiItem {
         this.values = [];
         break;
       }
+      case 'nested': {
+        if (!(value instanceof Map)) {
+          throw new TypeError('unexpected non map input as nested object');
+        }
+
+        this.map = value;
+        break;
+      }
       case 'object': {
+        if (typeof value !== 'string') {
+          throw new TypeError('unexpected non map input as nested object');
+        }
+
         this.value = value;
         break;
       }

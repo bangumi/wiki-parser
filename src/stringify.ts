@@ -10,16 +10,30 @@ const stringifyArray = (arr: WikiArrayItem[] | undefined) => {
 };
 
 export function stringify(wiki: Wiki): string {
-  const body = wiki.data.reduce((pre, item) => {
-    if (item.array) {
-      return `${pre}\n|${item.key} = {${stringifyArray(item.values)}\n}`;
-    }
-    return `${pre}\n|${item.key} = ${item.value ?? ''}`;
-  }, '');
-
   const type = wiki.type ? ' ' + wiki.type : '';
 
-  return `${prefix}${type}${body}\n${suffix}`;
+  const lines = [`${prefix}${type}`];
+
+  for (const item of wiki.data) {
+    if (item.array) {
+      lines.push(`|${item.key} = {${stringifyArray(item.values)}\n}`);
+      continue;
+    }
+    if (item.map) {
+      lines.push(`|${item.key} = {`);
+      for (const [key, value] of item.map.entries()) {
+        lines.push(`  | ${value} = ${key}`);
+      }
+      lines.push('}');
+      continue;
+    }
+
+    lines.push(`|${item.key} = ${item.value ?? ''}`);
+  }
+
+  lines.push(suffix);
+
+  return lines.join('\n');
 }
 
 export function stringifyMap(wiki: WikiMap): string {
