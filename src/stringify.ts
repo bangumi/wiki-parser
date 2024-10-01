@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/no-array-reduce */
 import { prefix, suffix } from './shared.js';
 import type { Wiki, WikiArrayItem, WikiMap } from './types.js';
 
