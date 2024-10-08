@@ -89,11 +89,10 @@ describe('Wiki stringify', () => {
 });
 
 describe('parse map', () => {
-  const item = new WikiItem('A', '', 'array');
-
-  item.values = [new WikiArrayItem(undefined, 'b'), new WikiArrayItem(undefined, 'c')];
-
-  const expected = { type: '', data: new Map([['A', item]]) };
+  const expected = {
+    type: '',
+    data: new Map([['A', [new WikiArrayItem(undefined, 'b'), new WikiArrayItem(undefined, 'c')]]]),
+  };
 
   test('should merge keys', () => {
     const o = parseToMap(`{{Infobox
@@ -131,8 +130,40 @@ describe('parse map', () => {
 }}
 `);
 
-    expect(parsed).toMatchSnapshot();
-    expect(stringifyMap(parsed)).toMatchSnapshot();
+    expect(parsed).toMatchInlineSnapshot(`
+      {
+        "data": Map {
+          "A" => [
+            WikiArrayItem {
+              "k": "1",
+              "v": "b",
+            },
+            WikiArrayItem {
+              "k": undefined,
+              "v": "c",
+            },
+            WikiArrayItem {
+              "k": "2",
+              "v": "b",
+            },
+          ],
+          "c" => "e",
+          "q" => "",
+        },
+        "type": "",
+      }
+    `);
+    expect(stringifyMap(parsed)).toMatchInlineSnapshot(`
+      "{{Infobox
+      |A = {
+      [1|b]
+      [c]
+      [2|b]
+      }
+      |c = e
+      |q = 
+      }}"
+    `);
   });
 });
 

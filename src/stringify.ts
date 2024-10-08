@@ -23,12 +23,12 @@ export function stringify(wiki: Wiki): string {
 
 export function stringifyMap(wiki: WikiMap): string {
   const body = [...wiki.data]
-    .map(([_key, item]) => {
-      if (item.array) {
-        return `|${item.key} = {${stringifyArray(item.values)}\n}`;
+    .map(([key, value]) => {
+      if (typeof value === 'string') {
+        return `|${key} = ${value ?? ''}`;
       }
 
-      return `|${item.key} = ${item.value ?? ''}`;
+      return `|${key} = {${stringifyArray(value)}\n}`;
     })
     .join('\n');
 
