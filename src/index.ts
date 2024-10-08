@@ -19,16 +19,28 @@ export { stringify, stringifyMap } from './stringify.js';
 export function parseToMap(s: string): WikiMap {
   const w = parse(s);
 
-  const data = new Map<string, WikiItem>();
+  const data = new Map<string, string | WikiArrayItem[]>();
 
   for (const item of w.data) {
-    const previous = data.get(item.key);
-    if (!previous) {
-      data.set(item.key, item);
+    let previous = data.get(item.key);
+    if (previous) {
+      if (typeof previous === 'string') {
+        previous = [new WikiArrayItem(undefined, previous)];
+      }
+      if (item.array) {
+        previous.push(...(item.values as WikiArrayItem[]));
+      } else {
+        previous.push(new WikiArrayItem(undefined, item.value as string));
+      }
+      data.set(item.key, previous);
       continue;
     }
 
-    previous.push(item);
+    if (item.array) {
+      data.set(item.key, item.values ?? []);
+    } else {
+      data.set(item.key, item.value as string);
+    }
   }
 
   return { type: w.type, data };
