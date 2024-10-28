@@ -1,7 +1,6 @@
 import * as fs from 'node:fs';
 
 import * as esbuild from 'esbuild';
-import { umdWrapper } from 'esbuild-plugin-umd-wrapper';
 
 fs.rmSync('./dist/', { recursive: true, force: true });
 
