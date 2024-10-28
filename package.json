@@ -1,6 +1,6 @@
 {
   "name": "@bgm38/wiki",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "bangumi wiki syntax parser",
   "type": "module",
   "exports": {
