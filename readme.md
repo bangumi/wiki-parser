@@ -33,7 +33,7 @@ if (error) {
 // @name        new user script
 // @version     0.0.1
 // @match       https://example.com/*
-// @require     https://cdn.jsdelivr.net/npm/@bgm38/wiki@0.3.2
+// @require     https://cdn.jsdelivr.net/npm/@bgm38/wiki@0.3.3
 // ==/UserScript==
 
 (() => {
