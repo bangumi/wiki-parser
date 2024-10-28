@@ -15,6 +15,18 @@ export * from './types.js';
 export * from './error.js';
 export { stringify, stringifyMap } from './stringify.js';
 
+export function parseToMap2(s: string): [null, WikiMap] | [WikiSyntaxError, null] {
+  try {
+    return [null, parseToMap(s)];
+  } catch (error) {
+    if (error instanceof WikiSyntaxError) {
+      return [error, null];
+    }
+
+    throw error;
+  }
+}
+
 /** 解析 wiki 文本，以 `Map` 类型返回解析结果。 会合并重复出现的 key */
 export function parseToMap(s: string): WikiMap {
   const w = parse(s);
@@ -67,6 +79,18 @@ function processInput(s: string): [string, number] {
   }
 
   return [s.trim(), offset];
+}
+
+export function parse2(s: string): [null, Wiki] | [WikiSyntaxError, null] {
+  try {
+    return [null, parse(s)];
+  } catch (error) {
+    if (error instanceof WikiSyntaxError) {
+      return [error, null];
+    }
+
+    throw error;
+  }
 }
 
 export function parse(s: string): Wiki {

@@ -5,7 +5,7 @@ import * as url from 'node:url';
 import yaml from 'js-yaml';
 import { describe, test, expect } from 'vitest';
 
-import { parse, parseToMap, stringify, WikiArrayItem, WikiItem } from '../src/index.js';
+import { parse, parse2, parseToMap, stringify, WikiArrayItem } from '../src/index.js';
 import { stringifyMap } from '../src/stringify.js';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -55,7 +55,9 @@ describe('Wiki syntax parser expected to be inValid', () => {
       const testFilePath = path.resolve(invalidTestDir, file);
       const testContent = fs.readFileSync(testFilePath, 'utf8');
 
-      expect(() => parse(testContent)).toThrowError();
+      const [error] = parse2(testContent);
+
+      expect(error).not.toBe(null);
     });
   }
 });

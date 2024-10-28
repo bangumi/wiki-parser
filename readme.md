@@ -16,16 +16,13 @@ npm i @bgm38/wiki
 
 ```typescript
 import type { Wiki } from '@bgm38/wiki';
-import { parse, WikiSyntaxError } from '@bgm38/wiki';
+import { parse2, WikiSyntaxError } from '@bgm38/wiki';
 
-try {
-  let w: Wiki = parse('...');
-} catch (error) {
-  if (error instanceof WikiSyntaxError) {
-    console.log('bad wiki string', `${error.message}`);
-  }
-
-  throw error;
+const [error, w] = parse2('...');
+if (error) {
+  console.log('bad wiki string', `${error.message}`);
+} else {
+  console.log('wiki', w);
 }
 ```
 
