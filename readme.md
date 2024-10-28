@@ -26,7 +26,7 @@ if (error) {
 }
 ```
 
-## 在用户脚本中使用（在 bangumi 组件中不起效）：
+## 在用户脚本中使用（在 bangumi 组件中不起效）<a id="userscript"></a>
 
 ```javascript
 // ==UserScript==
