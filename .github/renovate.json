@@ -6,4 +6,7 @@
     "github>Trim21/renovate-config:monthly"
   ],
   "rangeStrategy": "bump"
+  "lockFileMaintenance": {
+    "automerge": true
+  }
 }
