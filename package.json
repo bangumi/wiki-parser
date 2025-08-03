@@ -33,7 +33,7 @@
   },
   "packageManager": "pnpm@10.14.0",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "lint-staged": {
     "*.{md,cjs,mjs,js,jsx,ts,tsx,json,yml,yaml}": [
