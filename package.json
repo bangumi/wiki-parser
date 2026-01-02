@@ -53,12 +53,12 @@
   "license": "MIT",
   "homepage": "https://github.com/bangumi/wiki-parser",
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
+    "@eslint/js": "^9.39.2",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^24.10.1",
-    "@vitest/coverage-v8": "^4.0.15",
-    "esbuild": "^0.27.0",
-    "eslint": "^9.39.1",
+    "@types/node": "^24.10.4",
+    "@vitest/coverage-v8": "^4.0.16",
+    "esbuild": "^0.27.2",
+    "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-n": "^17.23.1",
@@ -70,10 +70,10 @@
     "js-yaml": "^4.1.1",
     "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
-    "prettier-plugin-jsdoc": "^1.7.0",
+    "prettier-plugin-jsdoc": "^1.8.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.48.1",
-    "vitest": "^4.0.15"
+    "typescript-eslint": "^8.51.0",
+    "vitest": "^4.0.16"
   },
   "publishConfig": {
     "access": "public"
