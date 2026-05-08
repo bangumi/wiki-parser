@@ -55,10 +55,10 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^24.12.2",
-    "@vitest/coverage-v8": "^4.1.2",
+    "@types/node": "^24.12.3",
+    "@vitest/coverage-v8": "^4.1.5",
     "esbuild": "^0.28.0",
-    "eslint": "^10.1.0",
+    "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-n": "^17.24.0",
@@ -69,11 +69,11 @@
     "husky": "^9.1.7",
     "js-yaml": "^4.1.1",
     "lint-staged": "^16.4.0",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.3",
     "prettier-plugin-jsdoc": "^1.8.0",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.58.0",
-    "vitest": "^4.1.2"
+    "typescript-eslint": "^8.59.2",
+    "vitest": "^4.1.5"
   },
   "publishConfig": {
     "access": "public"
