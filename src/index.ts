@@ -42,7 +42,7 @@ export function parseToMap(s: string): WikiMap {
       if (item.array) {
         previous.push(...(item.values as WikiArrayItem[]));
       } else {
-        previous.push(new WikiArrayItem(undefined, item.value as string));
+        previous.push(new WikiArrayItem(undefined, item.value));
       }
       data.set(item.key, previous);
       continue;
