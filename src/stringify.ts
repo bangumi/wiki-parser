@@ -1,11 +1,11 @@
 import { prefix, suffix } from './shared.js';
 import type { Wiki, WikiArrayItem, WikiMap } from './types.js';
 
-const stringifyArray = (arr: WikiArrayItem[] | undefined) => {
-  if (!arr) {
+const stringifyArray = (array: WikiArrayItem[] | undefined) => {
+  if (!array) {
     return '';
   }
-  return arr.reduce((pre, item) => `${pre}\n[${item.k ? `${item.k}|` : ''}${item.v ?? ''}]`, '');
+  return array.reduce((pre, item) => `${pre}\n[${item.k ? `${item.k}|` : ''}${item.v ?? ''}]`, '');
 };
 
 export function stringify(wiki: Wiki): string {
