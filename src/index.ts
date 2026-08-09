@@ -63,19 +63,16 @@ function processInput(s: string): [string, number] {
   s = s.replaceAll('\r\n', '\n');
 
   for (const char of s) {
-    switch (char) {
-      case '\n': {
-        offset++;
-        break;
-      }
-      case ' ':
-      case '\t': {
-        continue;
-      }
-      default: {
-        return [s.trim(), offset];
-      }
+    if (char === '\n') {
+      offset++;
+      continue;
     }
+
+    if (char === ' ' || char === '\t') {
+      continue;
+    }
+
+    return [s.trim(), offset];
   }
 
   return [s.trim(), offset];
@@ -99,52 +96,52 @@ export function parse(s: string): Wiki {
     data: [],
   };
 
-  const [strTrim, offset] = processInput(s);
+  const [stringTrim, offset] = processInput(s);
 
-  if (strTrim === '') {
+  if (stringTrim === '') {
     return wiki;
   }
 
-  if (!strTrim.startsWith(prefix)) {
+  if (!stringTrim.startsWith(prefix)) {
     throw new WikiSyntaxError(offset - 1, null, GlobalPrefixError);
   }
 
-  if (!strTrim.endsWith(suffix)) {
+  if (!stringTrim.endsWith(suffix)) {
     throw new WikiSyntaxError((s.match(/\n/g)?.length ?? -2) + 1, null, GlobalSuffixError);
   }
 
-  const arr = strTrim.split('\n');
-  if (arr[0]) {
-    wiki.type = parseType(arr[0]);
+  const array = stringTrim.split('\n');
+  if (array[0]) {
+    wiki.type = parseType(array[0]);
   }
 
   /* split content between {{Infobox xxx and }} */
-  const fields = arr.slice(1, -1);
+  const fields = array.slice(1, -1);
 
-  let inArray = false;
-  for (let i = 0; i < fields.length; ++i) {
-    const line = fields[i]?.trim();
-    const lino = offset + i;
+  let isInArray = false;
+  for (let index = 0; index < fields.length; ++index) {
+    const line = fields[index]?.trim();
 
     if (!line) {
       continue;
     }
+    const lino = offset + index;
     /* new field */
     if (line.startsWith('|')) {
-      if (inArray) {
+      if (isInArray) {
         throw new WikiSyntaxError(lino, line, ArrayNoCloseError);
       }
       const meta = parseNewField(lino, line);
-      inArray = meta[2] === 'array';
+      isInArray = meta[2] === 'array';
       const field = new WikiItem(...meta);
       wiki.data.push(field);
       /* is Array item */
-    } else if (inArray) {
+    } else if (isInArray) {
       if (line.startsWith('}')) {
-        inArray = false;
+        isInArray = false;
         continue;
       }
-      if (i === fields.length - 1) {
+      if (index === fields.length - 1) {
         throw new WikiSyntaxError(lino, line, ArrayNoCloseError);
       }
       wiki.data.at(-1)?.values?.push(new WikiArrayItem(...parseArrayItem(lino, line)));
@@ -163,15 +160,15 @@ const parseType = (line: string): string => {
 };
 
 const parseNewField = (lino: number, line: string): [string, string, WikiItemType] => {
-  const str = line.slice(1);
-  const index = str.indexOf('=');
+  const content = line.slice(1);
+  const index = content.indexOf('=');
 
   if (index === -1) {
     throw new WikiSyntaxError(lino, line, ExpectingSignEqualError);
   }
 
-  const key = str.slice(0, index).trim();
-  const value = str.slice(index + 1).trim();
+  const key = content.slice(0, index).trim();
+  const value = content.slice(index + 1).trim();
   switch (value) {
     case '{': {
       return [key, '', 'array'];

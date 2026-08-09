@@ -16,10 +16,10 @@ export class WikiSyntaxError extends Error {
   }
 }
 
-function toErrorString(lino: number, line: string | null, msg: string): string {
+function toErrorString(lino: number, line: string | null, message: string): string {
   if (line === null) {
-    return `WikiSyntaxError: ${msg}, line ${lino}`;
+    return `WikiSyntaxError: ${message}, line ${lino}`;
   }
 
-  return `WikiSyntaxError: ${msg}, line ${lino}: ${JSON.stringify(line)}`;
+  return `WikiSyntaxError: ${message}, line ${lino}: ${JSON.stringify(line)}`;
 }
