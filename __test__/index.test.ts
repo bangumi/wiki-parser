@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import * as url from 'node:url';
 
-import yaml from 'js-yaml';
+import { load } from 'js-yaml';
 import { describe, test, expect } from 'vitest';
 
 import { parse, parse2, parseToMap, stringify, WikiArrayItem } from '../src/index.js';
@@ -37,7 +37,7 @@ describe('Wiki syntax parser expected to be valid', () => {
       const expectedContent = fs.readFileSync(expectedFilePath, 'utf8');
 
       const result = parse(testContent);
-      const expected = yaml.load(expectedContent);
+      const expected = load(expectedContent);
 
       expect(result).toEqual(expected);
     });
@@ -83,7 +83,7 @@ describe('Wiki stringify', () => {
       const res = stringify(wiki);
 
       const result = parse(res);
-      const expected = yaml.load(expectedContent);
+      const expected = load(expectedContent);
 
       expect(result).toEqual(expected);
     });
