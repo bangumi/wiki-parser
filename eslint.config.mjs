@@ -19,7 +19,7 @@ export default tsEslint.config(
       },
     },
   },
-  eslintPluginUnicorn.configs['flat/recommended'],
+  eslintPluginUnicorn.configs.recommended,
   {
     rules: {
       'unicorn/no-array-reduce': 'off',
